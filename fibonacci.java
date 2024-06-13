@@ -8,6 +8,7 @@ public class fibonacci {
                 int third = first + second ;
                 first = second;
                 second = third;            
-        } 
+        }
+        //System.out.println(second+""); if u need the sum of fibonacchi
     }
 }
