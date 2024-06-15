@@ -1,11 +1,12 @@
-public class topLeft {
+public class xPattern {
     public static void main(String[] args) {
-        int n=6;
+        int  n=5;
         for(int row=1;row<=n;row++){
             for(int col=1;col<=n;col++){
-                if(row+col<=n+1){
+                if(row+col==6 || row-col==0){
                     System.out.print("*");
-                }else{
+                }
+                else{
                     System.out.print(" ");
                 }
             }
