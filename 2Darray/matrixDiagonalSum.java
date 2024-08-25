@@ -4,7 +4,9 @@ public class matrixDiagonalSum {
         int sum=0;
         for(int i=0;i<n;i++){
             sum+=mat[i][i];//for secondary diagonal
-            sum+=mat[i][n-1-i];//for primary diagonal
+            if(i!=n-1-i){
+                sum+=mat[i][n-1-i];//for primary diagonal
+            }
         }
         return sum;
     }
@@ -12,6 +14,7 @@ public class matrixDiagonalSum {
         int mat[][]={{1,2,3},
               {4,5,6},
               {7,8,9}};
-        diagonalSum(mat);
+        int result=diagonalSum(mat);
+        System.out.println(result);
     }
 }
