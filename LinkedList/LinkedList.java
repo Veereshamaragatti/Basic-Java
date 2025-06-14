@@ -10,9 +10,12 @@ public class LinkedList{
     }
     public static Node head;
     public static Node tail;
+    public static int size;
+    
 
     public void addFirst(int data){
         Node newNode = new Node(data);
+        size++;
         if(head == null){
             head = tail = newNode;
             return;
@@ -22,6 +25,7 @@ public class LinkedList{
     }
     public void addLast(int data){
         Node newNode = new Node(data);
+        size++;
         if(head == null){
             head = tail = newNode;
             return;
@@ -36,10 +40,86 @@ public class LinkedList{
             return;
         }
         while(temp != null){
-            System.out.print(temp.data+" ");
+            System.out.print(temp.data+"->");
             temp = temp.next;
         }
-        System.out.println();
+        System.out.println("null");
+    }
+    public void addMiddle(int index,int data){
+        Node newNode = new Node(data);
+        size++;
+        Node temp = head;
+        if(index==0){
+            addFirst(data);
+            return;
+        }
+        int i=0;
+        while(i < index-1){
+            temp=temp.next;
+        }
+        newNode.next=temp.next;
+        temp.next = newNode;
+    }
+    public int removeFirst(){
+        if(size == 0){
+            System.out.println("LL is empty");
+            return Integer.MIN_VALUE;
+        }else if(size == 1){
+            int val = head.data;
+            head = tail = null;
+            return val;
+        }
+        int val = head.data;
+        head = head.next;
+        size--;
+        return val;
+    }
+    public int removeLast(){
+        if(size == 0){
+             System.out.println("LL is empty");
+            return Integer.MIN_VALUE;
+        }
+        else if(size == 1){
+            int val = head.data;
+            head = tail = null;
+            size = 0;
+            return val;
+        }
+        Node temp = head;
+        for (int i = 0; i < size - 2; i++) {
+            temp = temp.next;
+        }
+        int val = temp.next.data;
+        temp.next = null;
+        tail = temp;
+        size--;
+        return val;
+    }
+    public int search(int data){
+       Node temp = head;
+       int i = 0;
+       while(temp!=null){
+        if(temp.data == data){
+            return i;
+        }
+        temp = temp.next;
+        i++;
+       } 
+       System.out.println("The key Element is not found");
+       return -1;
+    }
+    public void reverse(){
+        Node prev = null;
+        Node cur = tail = head;
+        Node next;
+
+        while(cur != null){
+            next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
+        }
+        head = prev;
     }
 
     public static void main(String args[]){
@@ -48,6 +128,17 @@ public class LinkedList{
         ll.addFirst(1);
         ll.print();
         ll.addLast(2);
+        ll.print();
+        ll.addFirst(0);
+        ll.print();
+        ll.addMiddle(1, 7);
+        ll.print();
+        System.out.println("the number of elements are ->"+ll.size);
+        ll.removeLast();
+        System.out.println("the number of elements are ->"+ll.size);
+        System.out.println(ll.search(1));
+        ll.print();
+        ll.reverse();
         ll.print();
     }
 }
